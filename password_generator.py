@@ -29,6 +29,8 @@ class PasswordGenerator:
         if not self._character_pool:
             raise ValueError("No valid characters available for password generation.")
         password = ''.join(secrets.choice(secrets.choice(self._character_pool)) for _ in range(self._length))  # Ensure at least one character from each set is included
+        # Shuffle the password to avoid predictable patterns
+        password = ''.join(secrets.choice(password) for _ in range(len(password))) 
         self._password = password
 
 
